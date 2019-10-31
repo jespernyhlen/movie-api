@@ -15,6 +15,8 @@ mongoose.connect(
     `mongodb+srv://${HOST}:${PASSWORD}@rest-vdyua.mongodb.net/test?retryWrites=true&w=majority`
 );
 
+const Movie = require('./movieModel');
+
 // let id = 14323;
 
 app.use(bodyParser.json());
