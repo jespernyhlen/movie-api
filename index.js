@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const port = 1447;
+const port = 1448;
 
 require('dotenv').config();
 
@@ -45,6 +45,7 @@ app.get('/movies', (req, res, next) => {
     const year_max = req.query.year_max || 2030;
     const genre = parseInt(req.query.genre) || '';
     const search = req.query.search || '';
+    console.log(search);
 
     if (req.query.genre) {
         Movie.find({
@@ -55,6 +56,7 @@ app.get('/movies', (req, res, next) => {
             vote_average: { $gte: vote_min, $lte: vote_max },
             release_date: { $gte: year_min, $lte: year_max }
         })
+            .sort({ popularity: -1 })
             .skip(per_page * page - per_page)
             .limit(per_page)
             .exec(function(err, data) {
@@ -93,6 +95,7 @@ app.get('/movies', (req, res, next) => {
             vote_average: { $gte: vote_min, $lte: vote_max },
             release_date: { $gte: year_min, $lte: year_max }
         })
+            .sort({ popularity: -1 })
             .skip(per_page * page - per_page)
             .limit(per_page)
             .exec(function(err, data) {
@@ -151,7 +154,6 @@ app.get('/movies', (req, res, next) => {
                 }
             });
     } else if (req.query.id) {
-        console.log(id);
         Movie.findById(id).exec(function(err, data) {
             if (data != null) {
                 res.status(200).json({
