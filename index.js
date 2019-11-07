@@ -42,7 +42,7 @@ app.get('/movies', (req, res, next) => {
     const per_page = parseInt(req.query.per_page) || 10;
     const page = parseInt(req.query.page) || 1;
     const year_min = req.query.year_min || 1980;
-    const year_max = req.query.year_max || 2030;
+    const year_max = req.query.year_max || 2020;
     const genre = parseInt(req.query.genre) || '';
     const search = req.query.search || '';
     console.log(search);
