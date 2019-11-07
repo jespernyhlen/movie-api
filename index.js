@@ -56,7 +56,7 @@ app.get('/movies', (req, res, next) => {
             vote_average: { $gte: vote_min, $lte: vote_max },
             release_date: { $gte: year_min, $lte: year_max }
         })
-            .sort({ popularity: -1 })
+            .sort({ release_date: -1 })
             .skip(per_page * page - per_page)
             .limit(per_page)
             .exec(function(err, data) {
@@ -95,7 +95,7 @@ app.get('/movies', (req, res, next) => {
             vote_average: { $gte: vote_min, $lte: vote_max },
             release_date: { $gte: year_min, $lte: year_max }
         })
-            .sort({ popularity: -1 })
+            .sort({ release_date: -1 })
             .skip(per_page * page - per_page)
             .limit(per_page)
             .exec(function(err, data) {
